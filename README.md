@@ -59,3 +59,12 @@ TABLE without id
 WHERE type = "project" and project_end_date >= date(today)
 sort project_end_date desc
 ```
+
+In this dataview, I look at the number of projects versus number of people 
+
+```dataview
+TABLE without ID type, length(rows) as count
+where type
+group by type
+sort length(rows) DESC
+```
