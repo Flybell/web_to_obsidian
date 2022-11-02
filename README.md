@@ -1,5 +1,5 @@
 # Web to Obsidian
-A script that scrapes an html/xml page to extract markdown text for Obsidian
+A script that scrapes an html/xml page then creates a markdown file for Obsidian & the dataview plugin
 
 
 ## Introduction 
