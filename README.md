@@ -1,5 +1,5 @@
 # Web to Obsidian
-A script that scrapes an html/xml page then creates markdown files for Obsidian & the dataview plugin
+A Python 3 script that scrapes an html/xml page then creates markdown files for Obsidian & the dataview plugin
 
 
 ## Introduction 
