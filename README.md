@@ -27,6 +27,40 @@ To know where the data's at, you need to actually look at the source html code. 
 
 Once you've extracted all the info you need and put them in variables, you can now bave python write them line by line into a .md file that lives in the folder of your Obsidian file. The first few lines define the YAML heading. YAML & in-line formatting were designed so that dataview can read the code.
 
-## The target website of my script
+## The target website of my script & samples
 
 To simplify things, the dummy target website dummy.site.com has a list of members. Imagine that when you click on each member's link, you will see a list of projects the person is leading. I want to create, in my local Obsidian database, a note for each person and a note for each project, with each project containing a wikilink to the person. 
+
+Since I want to use dataview to analyze the notes I've created, I format the files to contain YAML metadata and also inline variables for dataview underneath the YAML heading. Why both? It is important to keep in mind that YAML is invalidated when there are ":" symbols in your text. Therefore, I put longer texts (titles, abstracts, etc., between YAML). 
+
+*Sample person YAML:
+
+Note Title: First Last
+
+---
+type: person
+aliases: []
+create_date: 2022-11-01
+url:
+---
+
+*Sample project YAML: 
+
+Note Title: 
+
+---
+type: project
+tags: tag
+aliases: []
+create_date: 2022-11-01
+url:
+---
+
+name:: [[First Last]]
+
+project_role:: Visitor
+project_start_date:: 2019-09-02
+project_end_date:: 2019-09-07
+research_area:: [[Other]]
+title:: XYZ
+abstract:: ABC
