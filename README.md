@@ -39,7 +39,7 @@ To simplify things, here's the use case. The dummy target website dummy.site.com
 
 Since I want to use dataview to analyze the notes I've created, I format the files to contain YAML metadata and also inline variables for dataview underneath the YAML heading. Why both? It is important to keep in mind that YAML is invalidated when there are ":" symbols in your text. Therefore, I put longer texts (titles, abstracts, etc., under the YAML just in case there's a : in there.). 
 
-See sample People (First Last.md) and Project (First Last-2022-10-10.md) files for examples of the final output. Obviously, I added code block brackets so that you can see the YAMl code. Otherwise, Github would read the .md files and format it differently.
+See sample People (First Last.md) and Project (First Last-2022-10-10.md) files for examples of the final output. Obviously, I added code block brackets so that you can see the YAML code. Otherwise, Github would read the .md files and format it differently. In Obsidian, when you enable backlink view, you can see all the projects that a person is involved in by looking at the person's note. 
 
 ## Dataview examples
 
