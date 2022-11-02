@@ -31,6 +31,8 @@ With this technique, I can also ask it to look for the url of the "next page" bu
 
 Uh... I wish. YOU need to know this before writing the code! To know where the data's at, you need to actually look at the source html code. Right click on the website and examine the source code. Find the info you need, identify the html container around it, then put that html element in your code. The bot will just go through the site and extract all the info from those html containers.  
 
+Note: read the BeautifulSoup documentation, especially the part that explains how to use "find" and "find_all." It's actually a bit difficult to get what you're looking for the first try. You need to know the syntax of these two functions well. Beautiful soup is much more powerful than this (e.g., it can move up and down html hierarchies like a spider), but I don't know much beyond these two functions!
+
 ### PART 2: WRITING .MD FILES FOR OBSIDIAN
 
 Once you've extracted all the info you need and put them in variables, you can now write them line by line into a .md file that lives in the folder of your Obsidian vault. The first few lines define the YAML heading. YAML & in-line formatting were designed so that dataview can read the code. 
