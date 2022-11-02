@@ -15,7 +15,7 @@ import glob #to create file name from variable
 from code import *
 
 #download all members!
-all_url = "https://dummy.url.com" #first page of member directory, contains a list of members with links to their profiles
+all_url = "https://dummy.site.com" #first page of member directory, contains a list of members with links to their profiles
 next_url = all_url
 tag = "tag_name"
 
