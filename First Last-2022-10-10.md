@@ -1,3 +1,5 @@
+```
+
 ---
 type: project
 tags: tag
@@ -14,3 +16,5 @@ project_end_date:: 2019-09-07
 research_area:: [[Other]]
 title:: XYZ
 abstract:: ABC
+
+```
