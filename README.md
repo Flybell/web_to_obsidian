@@ -34,3 +34,28 @@ To simplify things, the dummy target website dummy.site.com has a list of member
 Since I want to use dataview to analyze the notes I've created, I format the files to contain YAML metadata and also inline variables for dataview underneath the YAML heading. Why both? It is important to keep in mind that YAML is invalidated when there are ":" symbols in your text. Therefore, I put longer texts (titles, abstracts, etc., between YAML). 
 
 See sample People (First Last.md) and Project (First Last-2022-10-10.md) files for examples of the final output. Obviously, I added code block brackets so that you can see the YAMl code. Otherwise, Github would read the .md files and format it differently.
+
+## Dataview examples
+
+In this dataview, I look at the number of notes per research area. 
+
+```dataview
+TABLE without ID area, length(rows) as count
+where research_area
+group by research_area
+sort length(rows) DESC
+```
+
+In this dataview, I look at the people who are still employed. 
+
+```dataview
+TABLE without id
+	file.link as Project,
+	name as NAME,
+	project_start_date as START, 
+	project_end_date as END, 
+	member_role as role, 
+	research_area as area 
+WHERE type = "project" and project_end_date >= date(today)
+sort project_end_date desc
+```
