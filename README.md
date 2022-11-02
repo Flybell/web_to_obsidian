@@ -23,7 +23,7 @@ Think of it as a bot that pretends to be a human clicking through a website on a
 
 By feeding it a url, it generates a "soup" object from the html/xml page, an object that can be operated over by functions such as "find". For instance, if I'm interested in extracting a list of animal names from the html webpage of my local zoo, my script would create a "soup" object of that page, return a list of the html elements (e.g., div, a, h1,) that contain the names with the "find_all" function, then extract the text therein. 
 
-I can also ask it to look for the url of the "next page" button and move on to scrape the next page. And the next. And the next. The main_script.py included here is a script that does exactly this, flipping through pages until there is no "next page" button. I've also created a similar script for single pages. Just remove the looping code to scrape a single page.
+I can also ask it to look for the url of the "next page" button and move on to scrape the next page. And the next. And the next. The main_script.py included here is a script that does exactly this, flipping through pages until there is no "next page" button. I've also created a similar script for single pages for my purposes. For you to do the same, just remove the looping code to scrape a single page.
 
 *Wow, so Beautifulsoup just magically knows where the text is at?* 
 
