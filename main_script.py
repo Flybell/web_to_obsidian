@@ -48,13 +48,13 @@ while next_url: #check whether there's a next page button
                   print("\nfound their project!") #console confirmation text
                   
                   # get project metadata string
-                  string = get_fellow_string(soup_project)
+                  string = get_member_string(soup_project)
 
                   #create profile for each project
                   proj_profile = []
-                  proj_profile.append(get_fellowship_type(string)) #0
-                  proj_profile.append(get_fellowship_startdate(string)) #1
-                  proj_profile.append(get_fellowship_enddate(string)) #2
+                  proj_profile.append(get_project_type(string)) #0
+                  proj_profile.append(get_project_startdate(string)) #1
+                  proj_profile.append(get_project_enddate(string)) #2
                   proj_profile.append(get_research_area(string)) #3
                   proj_profile.append(get_project_title(soup_project)) #4
                   proj_profile.append(get_project_abstract(soup_project)) #5
