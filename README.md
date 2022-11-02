@@ -33,34 +33,4 @@ To simplify things, the dummy target website dummy.site.com has a list of member
 
 Since I want to use dataview to analyze the notes I've created, I format the files to contain YAML metadata and also inline variables for dataview underneath the YAML heading. Why both? It is important to keep in mind that YAML is invalidated when there are ":" symbols in your text. Therefore, I put longer texts (titles, abstracts, etc., between YAML). 
 
-*Sample person YAML:
-
-Note Title: First Last
-
----
-type: person
-aliases: []
-create_date: 2022-11-01
-url:
----
-
-*Sample project YAML: 
-
-Note Title: 
-
----
-type: project
-tags: tag
-aliases: []
-create_date: 2022-11-01
-url:
----
-
-name:: [[First Last]]
-
-project_role:: Visitor
-project_start_date:: 2019-09-02
-project_end_date:: 2019-09-07
-research_area:: [[Other]]
-title:: XYZ
-abstract:: ABC
+See sample People (First Last.md) and Project (First Last-2022-10-10.md) files for examples of the final output.
