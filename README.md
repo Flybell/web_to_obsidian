@@ -2,7 +2,7 @@
 A script that scrapes an html/xml page to extract markdown text for Obsidian
 
 
-##Introduction 
+## Introduction 
 
 This Python 3 web scraping script consists of two components: 
 (1) using Beautifulsoup to comb the web and extract relevant information, 
@@ -12,7 +12,7 @@ The goal of this specific script is to comb through a public html-based database
 
 I will first introduce the logic of the procedure, then explain the specifics of the script itself.
 
-##The Logic of the Script
+## The Logic of the Script
 
 ### PART 1: USING BEAUTIFULSOUP TO SCRAPE THE WEB
 
@@ -27,7 +27,7 @@ To know where the data's at, you need to actually look at the source html code. 
 
 Once you've extracted all the info you need and put them in variables, you can now bave python write them line by line into a .md file that lives in the folder of your Obsidian file. The first few lines define the YAML heading. YAML & in-line formatting were designed so that dataview can read the code.
 
-##My Script 
+## My Script 
 
 To simplify things, the dummy target website has a list of members. When you click on each member, you will see a list of projects the person is leading. 
 I want to create, in my local Obsidian database, a note for each person and a note for each project, with each project containing a wikilink to the person. 
