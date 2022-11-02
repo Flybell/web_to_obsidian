@@ -31,7 +31,7 @@ Uh... I wish. YOU need to know this before writing the code! To know where the d
 
 ### PART 2: WRITING .MD FILES FOR OBSIDIAN
 
-Once you've extracted all the info you need and put them in variables, you can now bave python write them line by line into a .md file that lives in the folder of your Obsidian file. The first few lines define the YAML heading. YAML & in-line formatting were designed so that dataview can read the code. 
+Once you've extracted all the info you need and put them in variables, you can now write them line by line into a .md file that lives in the folder of your Obsidian vault. The first few lines define the YAML heading. YAML & in-line formatting were designed so that dataview can read the code. 
 
 ## The target website of my script & samples
 
