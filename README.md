@@ -27,7 +27,6 @@ To know where the data's at, you need to actually look at the source html code. 
 
 Once you've extracted all the info you need and put them in variables, you can now bave python write them line by line into a .md file that lives in the folder of your Obsidian file. The first few lines define the YAML heading. YAML & in-line formatting were designed so that dataview can read the code.
 
-## My Script 
+## The target website of my script
 
-To simplify things, the dummy target website has a list of members. When you click on each member, you will see a list of projects the person is leading. 
-I want to create, in my local Obsidian database, a note for each person and a note for each project, with each project containing a wikilink to the person. 
+To simplify things, the dummy target website dummy.site.com has a list of members. Imagine that when you click on each member's link, you will see a list of projects the person is leading. I want to create, in my local Obsidian database, a note for each person and a note for each project, with each project containing a wikilink to the person. 
