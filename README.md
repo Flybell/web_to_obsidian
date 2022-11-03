@@ -8,7 +8,7 @@ This Python 3 web scraping script consists of two components:
 (1) using Beautifulsoup to comb the web and extract relevant information, 
 (2) writing the info into .MD files that can be read by Obsidian, specifically by the dataview plugin.
 
-It combs through a public html-based database (a webpage with a list of links), creates markdown notes for each item. As it writes Obsidian wikilinks into the files, the notes are now connected through wikilinks and backlinks. For privacy purposes, the specific website I've been working on will not be revealed and the code will contain dummy links. As parts of the code are highly specific to the target website, the scripts here are only meant to be instructive demonstrations. They are not operational out of the box. The goal is to help you get started with your own project. 
+It combs through a public html-based database (a webpage with a list of links), creat markdown notes for each item. As it writes Obsidian wikilinks into the files, the notes are now connected through wikilinks and backlinks. For privacy purposes, the specific website I've been working on will not be revealed and the code will contain dummy links. As parts of the code are highly specific to the target website, the scripts here are only meant to be instructive demonstrations. They are not operational out of the box. The goal is to help you get started with your own project. 
 
 I will first introduce the logic of the procedure, then explain the specifics of the script itself.
 
