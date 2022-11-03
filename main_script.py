@@ -1,5 +1,5 @@
 """The main script"""
-""" This script takes the first page of as input,
+""" This script takes the first page as input,
 scrapes it, then scrapes all the remaining pages,
 then creates .md files with YAML that is readable for Obsidian.
 It is then stored in the Obsidian vault XXX.
@@ -17,7 +17,7 @@ from code import *
 #download all members!
 all_url = "https://dummy.site.com" #first page of member directory, contains a list of members with links to their profiles
 next_url = all_url
-tag = "tag_name"
+tag = "tag_name" #this is the tag for all "persons", different from those for events, etc. 
 
 #this script will collect all links on a page 
 #then find the "next page" button, get the url of the next page
@@ -33,24 +33,25 @@ while next_url: #check whether there's a next page button
 
     # process each member
     for person_url in member_urls:
-        soup_person = make_request(person_url) #get soup of that person's profile
+        soup_person = make_request(person_url) #get soup of that person's profile page
         if soup_person: #check if soup has been successfully created
             print("\n------------\nfound a person") #console confirmation text
             name = get_name(soup_person) # get name
             print(name) #console confirmation text
-            project_urls = get_project_url(soup_person) # get list of project urls of this person
             create_md_file_person(name, person_url, tag) # create person .md file
+            project_urls = get_project_url(soup_person) # get list of project urls of this person
 
         # get project info from project url, there may be more than one project per person
         for url in project_urls:
-              soup_project = make_request(url)
+              soup_project = make_request(url) #get soup of that project's page
               if soup_project:
                   print("\nfound their project!") #console confirmation text
                   
-                  # get project metadata string
-                  string = get_member_string(soup_project)
+                  # customize here: there is a line in this site that contains all the info I need, yours might not.
+                  # here, I am extracting that string that has project type, dates, research area
+                  string = get_member_string(soup_project) 
 
-                  #create profile for each project
+                  #create profile list for each project
                   proj_profile = []
                   proj_profile.append(get_project_type(string)) #0
                   proj_profile.append(get_project_startdate(string)) #1
