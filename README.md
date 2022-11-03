@@ -37,10 +37,6 @@ Note: read the BeautifulSoup documentation, especially the part that explains ho
 
 Once you've extracted all the info you need and put them in variables, you can now write them line by line into a .md file that lives in the folder of your Obsidian vault. The first few lines define the YAML heading. YAML & in-line formatting were designed so that dataview can read the code. 
 
-## The target website of my script & samples
-
-To simplify things, here's the use case. A dummy target website dummy.site.com has a list of members profile links. Imagine that when you click on each member's link, you will see a list of links to the projects the person is leading. I want to create, in my local Obsidian database, a note for each person and a note for each project, with each project containing a wikilink that goes back to the person. Then, when I am looking at the person file, there will be a backlink to all the projects it's associated with. 
-
 Since I want to use the powerful dataview community plugin to analyze the notes I've created, I formatted the files to contain YAML metadata 
 
 ```
@@ -56,7 +52,11 @@ and also inline variables underneath the YAML heading.
 title:: The God of Winds
 ```
  
-Why both? It is important to keep in mind that YAML is invalidated when there are ":" symbols in your text. Therefore, I put longer texts (titles, abstracts, etc., under the YAML just in case there's a : in there.). 
+Why both? It is important to keep in mind that YAML is invalidated when there are ":" symbols in your text. Therefore, I put longer texts (titles, abstracts, etc., under the YAML just in case there's a : in there.). Read the Dataview documentation to learn more.
+
+## The target website of my script & samples
+
+To simplify things, here's the use case. A dummy target website dummy.site.com has a list of members profile links. Imagine that when you click on each member's link, you will see a list of links to the projects the person is leading. I want to create, in my local Obsidian database, a note for each person and a note for each project, with each project containing a wikilink that goes back to the person. Then, when I am looking at the person file, there will be a backlink to all the projects it's associated with. 
 
 See sample People (First Last.md) and Project (First Last-2022-10-10.md) files for examples of the final output. 
 
