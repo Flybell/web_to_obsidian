@@ -93,3 +93,9 @@ where type
 group by type
 sort length(rows) DESC
 ```
+
+
+---
+
+Many thanks to r/Obsidian for pushing me to publish this repo. 
+https://www.reddit.com/r/ObsidianMD/comments/yjzake/used_obsidian_to_recreate_a_local_copy_of_a/
