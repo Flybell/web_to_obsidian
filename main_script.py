@@ -23,6 +23,7 @@ tag = "tag_name" #this is the tag for all "persons", different from those for ev
 #then find the "next page" button, get the url of the next page
 #and start over to collect all links on the next page 
 #it will end when there is no "next page" button
+
 while next_url: #check whether there's a next page button
     #create soup from page
     soup_all = make_request(next_url)
@@ -46,12 +47,9 @@ while next_url: #check whether there's a next page button
               soup_project = make_request(url) #get soup of that project's page
               if soup_project:
                   print("\nfound their project!") #console confirmation text
-                  proj_profile = get_project(soup_project)
-                  
-                  
-                  print("\nproject profile created for " + name) #console confirmation text
-
+                  proj_profile = get_project(soup_project)          
                   create_md_file_project(name, person_url, proj_profile) #create project files
+                  print("\nproject profile created for " + name) #console confirmation text
 
     #get next page
     next_url = get_next_page(soup_all)
