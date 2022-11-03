@@ -27,8 +27,8 @@ def make_request(url): #create a soup
 
 def get_next_page(soup):
   """ locate the next page button and output url"""
-    page = soup.find("li", {"class": "next"})
-    url = page.find("a", href=True)
+    page = soup.find("li", {"class": "next"}) # customize this search term
+    url = page.find("a", href=True) 
     if url != None:
         output_url = "https://dummy.site.com" + url["href"]
         print("starting next page")
@@ -39,16 +39,16 @@ def get_next_page(soup):
 
 def get_members(soup):
   """ output list of profile urls extracted from page"""
-    page = soup.find("div",  {"class": "row"})
+    page = soup.find("div",  {"class": "row"}) # customize this search term
     member_urls = []
-    for a in page.find_all("a", href=True):
+    for a in page.find_all("a", href=True): 
         member_urls.append("https://dummy.site.com" + a["href"])
     return member_urls
 
 def get_name(soup):
     """ on profile page, find the "Person Details" section, 
     return full name"""
-    name = soup.find("div", {"class": "list_title"})
+    name = soup.find("div", {"class": "list_title"}) # customize this search term
     given_name = name.find("span", {"itemprop": "givenName"})
     family_name = name.find("span", {"itemprop": "familyName"})
     return given_name.text.strip() + " " + family_name.text.strip()
@@ -56,7 +56,7 @@ def get_name(soup):
 def get_project_url(soup):
     """ find the "Related Projects" section
     return list of project urls from member profile page"""
-    section = soup.find("div", {"class": "related_content"})
+    section = soup.find("div", {"class": "related_content"}) # customize this search term
     project_urls = []
     for a in section.find_all("a", href=True, text=True):
         project_urls.append("https://dummy.site.com" + a["href"])
@@ -64,7 +64,7 @@ def get_project_url(soup):
 
 def get_project_details_soup(soup):
     """ find the Project Details section """
-    return soup.find("div", {"class": "view_wrapper"})
+    return soup.find("div", {"class": "view_wrapper"}) # customize this search term
 
 def get_member_string(soup):
     """ finds the string with project info from "Project Details"
@@ -72,7 +72,7 @@ def get_member_string(soup):
     returns a string that looks like this
     First Last | Role 2022-10-15 - 2023-04-14 | Research area: Animals"""
     section = get_project_details_soup(soup)
-    string = section.find("div", {"class": "list_category"}).text
+    string = section.find("div", {"class": "list_category"}).text # customize this search term
     string = " ".join(string.split())
     return string
 
@@ -107,13 +107,13 @@ def get_research_area(string):
 def get_project_title(soup):
   """get project title from soup"""
     section = get_project_details_soup(soup)
-    title = section.find("div", {"class": "list_title"}).text
+    title = section.find("div", {"class": "list_title"}).text # customize this search term
     return title
 
 def get_project_abstract(soup):
   """get project abstract from soup"""
     section = get_project_details_soup(soup)
-    abstract = section.find("div", {"class": "list_text"}).text
+    abstract = section.find("div", {"class": "list_text"}).text # customize this search term
     abstract = " ".join(abstract.split())
     return abstract
 
@@ -122,11 +122,11 @@ def get_project_abstract(soup):
 #leaving this here for your reference.
 def get_event(soup):
   """on event page, find the event details, output a dictionary of name, title, date"""
-    title = soup.find_all("h4", {"class": "list_title"})
-    name = soup.find_all("div", {"class": "list_subtitle"})
-    date = soup.find_all("div", {"class": "list_date"})
+    title = soup.find_all("h4", {"class": "list_title"}) # customize this search term
+    name = soup.find_all("div", {"class": "list_subtitle"}) # customize this search term
+    date = soup.find_all("div", {"class": "list_date"}) # customize this search term
     event_dict = []
-    for n in range(len(name)): #list of dictionaries
+    for n in range(len(name)): # create list of dictionaries
         dict = {
             "name": name[n].text.title().split(" (")[0].strip(),
             "title": title[n].text,
@@ -140,20 +140,23 @@ def get_event(soup):
 
 def create_md_file_project(name, person_url, project):
     """output: project md file"""
-    filename_project = "%s-%s.md" % (name, project[2])
-    project_path = "C:\\Users\\XXX\\XXX\\" + filename_project
+    filename_project = "%s-%s.md" % (name, project[2]) # this will be the note file name
+    project_path = "C:\\Users\\XXX\\XXX\\" + filename_project #designate where to put the folder, in this case it's the Obsidian vault
     with io.open(project_path, "w+", encoding="UTF8") as f:
         write_YAML_project(f, name, person_url, project)
 
 def create_md_file_person(name, person_url, tag):
     """output: person md file """
-    filename_person = "%s.md" % name
-    person_path = "C:\\Users\\XXX\\XXX\\" + filename_person
+    filename_person = "%s.md" % name # this will be the note file name
+    person_path = "C:\\Users\\XXX\\XXX\\" + filename_person #designate where to put the folder, in this case it's the Obsidian vault
+    
     # if file already exists, then only append
+    # important when a person got a promotion and thus changed roles, the new role (designed by tag & a wikilink) will be appended to the pre-existing file
     if os.path.exists(person_path):
         with io.open(person_path, "a", encoding="UTF8") as f:
-            f.write("\n\n" + "[[" + tag + "]]") #add link
+            f.write("\n\n" + "[[" + tag + "]]") # I created notes for high-level "roles" in the company and had them wiki-linked to the person note  
             f.write("\n\n#" + tag) #add tag
+            
     # if file doesn't exist, create new file
     else:
         with io.open(person_path, "w+", encoding="UTF8") as f:
