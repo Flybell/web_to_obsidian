@@ -40,15 +40,17 @@ while next_url: #check whether there's a next page button
             name = get_name(soup_person) # get name
             print(name) #console confirmation text
             create_md_file_person(name, person_url, tag) # create person .md file
+            print("\nperson profile created for " + name) #console confirmation text
+            
             project_urls = get_project_url(soup_person) # get list of project urls of this person
 
         # get project info from project url, there may be more than one project per person
         for url in project_urls:
               soup_project = make_request(url) #get soup of that project's page
               if soup_project:
-                  print("\nfound their project!") #console confirmation text
+                  print("\nfound a project!") #console confirmation text
                   proj_profile = get_project(soup_project)          
-                  create_md_file_project(name, person_url, proj_profile) #create project files
+                  create_md_file_project(name, person_url, proj_profile) #create project .md files
                   print("\nproject profile created for " + name) #console confirmation text
 
     #get next page
