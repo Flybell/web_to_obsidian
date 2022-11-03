@@ -46,19 +46,9 @@ while next_url: #check whether there's a next page button
               soup_project = make_request(url) #get soup of that project's page
               if soup_project:
                   print("\nfound their project!") #console confirmation text
+                  proj_profile = get_project(soup_project)
                   
-                  # customize here: there is a line in this site that contains all the info I need, yours might not.
-                  # here, I am extracting that string that has project type, dates, research area
-                  string = get_member_string(soup_project) 
-
-                  #create profile list for each project
-                  proj_profile = []
-                  proj_profile.append(get_project_type(string)) #0
-                  proj_profile.append(get_project_startdate(string)) #1
-                  proj_profile.append(get_project_enddate(string)) #2
-                  proj_profile.append(get_research_area(string)) #3
-                  proj_profile.append(get_project_title(soup_project)) #4
-                  proj_profile.append(get_project_abstract(soup_project)) #5
+                  
                   print("\nproject profile created for " + name) #console confirmation text
 
                   create_md_file_project(name, person_url, proj_profile) #create project files
