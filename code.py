@@ -179,7 +179,6 @@ def create_md_file_person(name, person_url, tag):
     else:
         with io.open(person_path, "w+", encoding="UTF8") as f:
             write_YAML_person(f, name, person_url, tag)
-    print("\n person created")
 
 def write_YAML_person(f, name, person_url, tag):
     #YAML
@@ -191,11 +190,12 @@ def write_YAML_person(f, name, person_url, tag):
 
 def write_YAML_project(f, name, person_url, project):
     """ write file into .md file for Obsidian to read"""
-    #within YAML
+    #YAML
     f.writelines(["---", "\ntype: project", "\naliases: []"])
     f.write("\ncreate_date: " + datetime.today().strftime('%Y-%m-%d'))
     f.write("\nurl: " + person_url)
     f.writelines(["\n", "---", "\n"])
+    
     # under YAML
     f.write("\nname:: " + "[[" + name + "]]")
     f.write("\n\nmember_role:: " + project[0])
@@ -211,8 +211,9 @@ def write_YAML_project(f, name, person_url, project):
     def create_md_file_event(title, name, date):
     filename_project = "event_%s.md" % (date[0:10])
     project_path = "C:\\Users\\XXX\\XXX\\XXX\\" + filename_project
+    
     with io.open(project_path, "w+", encoding="UTF8") as f:
-        #write YAML
+        #YAML
         f.writelines(["---", "\n"])
         f.write("\ntags: tag1, tag2")
         f.write("\ntitle: " + "\"" + title + "\"")
@@ -220,5 +221,6 @@ def write_YAML_project(f, name, person_url, project):
         f.write("\nmode: ") #hybrid, online, etc.
         f.write("\nattendance: ")
         f.writelines(["\n", "---", "\n"])
-        #write below YAML
+        
+        #under YAML
         f.write("\nname:: " + "[[" + name + "]]")
