@@ -8,7 +8,7 @@ This Python 3 web scraping script consists of two components:
 (1) using Beautifulsoup to comb the web and extract relevant information, 
 (2) writing the info into .MD files that can be read by Obsidian, specifically by the dataview plugin.
 
-It combs through a public html-based database (a webpage with a list of links), creates markdown notes for each item-- and because it writes Obsidian wikilinks into the files-- the notes are now connected through wikilinks and backlinks. For privacy purposes, the specific website I've been working on will not be revealed and the code will contain dummy links. As parts of the code are highly specific to the target website, the scripts here are only meant to be instructive demonstrations. They are not operational out of the box. The goal is to help you get started with your own project. 
+It combs through a public html-based database (a webpage with a list of links), creates markdown notes for each item. As it writes Obsidian wikilinks into the files, the notes are now connected through wikilinks and backlinks. For privacy purposes, the specific website I've been working on will not be revealed and the code will contain dummy links. As parts of the code are highly specific to the target website, the scripts here are only meant to be instructive demonstrations. They are not operational out of the box. The goal is to help you get started with your own project. 
 
 I will first introduce the logic of the procedure, then explain the specifics of the script itself.
 
@@ -21,11 +21,11 @@ Think of it as a bot that pretends to be a human clicking through a website on a
 
 *What, how?*
 
-By feeding it a url, it generates a so-called "soup" object from the html/xml page, an object that can be operated over by Beautifulsoup functions such as "find". For instance, if I'm interested in extracting a list of animal names from the html webpage of my local zoo, my script would create a "soup" object of that page, return a list of the html elements (e.g., div, a, h1,) that contain the names with the "find_all" function, then extract the text therein. 
+By feeding it a url, it generates a so-called "soup" object from the html/xml page, an object that can be operated over by Beautifulsoup functions such as "find". For instance, if I'm interested in extracting a list of animal names from the html webpage of my local zoo, my script would create a "soup" object of that page, return a list with the "find_all" function of the html elements (e.g., div, a, h1,) that contain the names, then extract the text therein. 
 
-What's cool though, is that the script can also locate a url, *feed the url back into itself*, and then extract more data from that url. This is the beauty of automation. To use the zoo example, if the website is not a list of names but a list of links to different animal pages, I can write a script that identifies and retrieves all of these links, and then it automatically processes these links one by one to create more soup objects to work with. 
+What's cool though, is that the script can also locate a url, *feed the url back into itself*, and then extract more data from that url. This is the beauty of automation. To use the zoo example, if the website is not a list of names but a list of links to different animal pages, I can write a script that identifies and retrieves all of these links, then automatically processes these links one by one to create more soup objects to work with. 
 
-With this technique, I can thus ask the script to look for the url of the "next page" button and move on to scrape the next page. And the next. And the next. The main_script.py included here is a script that does exactly this, flipping through pages until there is no "next page" button. Of course, I've also created a similar script for single pages for my own purposes. For you to do the same, just remove the looping code in this script and thus modify it to scrape a single page.
+With this technique, I can ask the script to look for the url of the "next page" button and move on to scrape the next page. And the next. And the next. The main_script.py included here is a script that does exactly this, flipping through pages until there is no "next page" button. Of course, I've also created a similar script for single pages for my own purposes. For you to do the same, just remove the looping code in this script and thus modify it to scrape a single page.
 
 *Wow, so Beautifulsoup just magically knows where the text is at?* 
 
@@ -41,9 +41,24 @@ Once you've extracted all the info you need and put them in variables, you can n
 
 To simplify things, here's the use case. A dummy target website dummy.site.com has a list of members profile links. Imagine that when you click on each member's link, you will see a list of links to the projects the person is leading. I want to create, in my local Obsidian database, a note for each person and a note for each project, with each project containing a wikilink that goes back to the person. Then, when I am looking at the person file, there will be a backlink to all the projects it's associated with. 
 
-Since I want to use the powerful dataview community plugin to analyze the notes I've created, I formatted the files to contain YAML metadata (marked by the three-dash line "---") and also inline variables (e.g., name:: First Last) underneath the YAML heading. Why both? It is important to keep in mind that YAML is invalidated when there are ":" symbols in your text. Therefore, I put longer texts (titles, abstracts, etc., under the YAML just in case there's a : in there.). 
+Since I want to use the powerful dataview community plugin to analyze the notes I've created, I formatted the files to contain YAML metadata 
 
-See sample People (First Last.md) and Project (First Last-2022-10-10.md) files for examples of the final output. Obviously, I added code block brackets ("```") so that you can see the YAML code. Otherwise, Github would read the .md files and format it differently. In Obsidian, when you enable backlink view, you can see all the projects that a person is involved in by looking at the person's note. 
+```
+---
+name: First Last
+role: manager
+---
+```
+
+and also inline variables underneath the YAML heading.
+
+```
+title:: The God of Winds
+```
+ 
+Why both? It is important to keep in mind that YAML is invalidated when there are ":" symbols in your text. Therefore, I put longer texts (titles, abstracts, etc., under the YAML just in case there's a : in there.). 
+
+See sample People (First Last.md) and Project (First Last-2022-10-10.md) files for examples of the final output. 
 
 ## Dataview examples
 
