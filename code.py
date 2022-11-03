@@ -52,6 +52,34 @@ def get_name(soup):
     given_name = name.find("span", {"itemprop": "givenName"})
     family_name = name.find("span", {"itemprop": "familyName"})
     return given_name.text.strip() + " " + family_name.text.strip()
+
+def get_member_string(soup):
+    """ finds the string with project info from "Project Details"
+    cleans up a string full of tabs and line breaks & rejoins with spaces
+    returns a string that looks like this
+    First Last | Role 2022-10-15 - 2023-04-14 | Research area: Animals"""
+    section = get_project_details_soup(soup)
+    string = section.find("div", {"class": "list_category"}).text # customize this search term
+    string = " ".join(string.split())
+    return string
+
+def get_project(soup):
+    """ extract string that has project details type, dates, research area
+    return list of project type, start date, end date, research area, title, abstract"""
+    
+    string = get_member_string(soup) # customize here: there is a line in target site that contains all the info I need, yours might not.
+    
+    #create profile list for each project
+    proj_profile = []
+    proj_profile.append(get_project_type(string)) #0
+    proj_profile.append(get_project_startdate(string)) #1
+    proj_profile.append(get_project_enddate(string)) #2
+    proj_profile.append(get_research_area(string)) #3
+    proj_profile.append(get_project_title(soup)) #4
+    proj_profile.append(get_project_abstract(soup)) #5
+    
+    return proj_profile
+
   
 def get_project_url(soup):
     """ find the "Related Projects" section
@@ -65,16 +93,6 @@ def get_project_url(soup):
 def get_project_details_soup(soup):
     """ find the Project Details section """
     return soup.find("div", {"class": "view_wrapper"}) # customize this search term
-
-def get_member_string(soup):
-    """ finds the string with project info from "Project Details"
-    cleans up a string full of tabs and line breaks & rejoins with spaces
-    returns a string that looks like this
-    First Last | Role 2022-10-15 - 2023-04-14 | Research area: Animals"""
-    section = get_project_details_soup(soup)
-    string = section.find("div", {"class": "list_category"}).text # customize this search term
-    string = " ".join(string.split())
-    return string
 
 def get_project_startdate(string):
     """ takes second item of string (member role and dates)
